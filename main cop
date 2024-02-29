@@ -1,0 +1,48 @@
+#[macro_use]
+extern crate rocket;
+
+use diesel::prelude::*;
+use diesel::pg::PgConnection;
+
+table! {
+    students (id) {
+        id -> Integer,
+        name -> Text,
+        age -> Integer,
+    }
+}
+
+// Modelo de datos para la tabla 'students'
+#[derive(Queryable)]
+struct Student {
+    id: i32,
+    name: String,
+    age: i32,
+}
+
+
+fn main() {
+    // Establecer la conexión a la base de datos PostgreSQL
+    let connection = PgConnection::establish("postgresql://benjamin:1192141@172.17.0.2~/clientes")
+        .expect("Error connecting to the database");
+
+    // Realizar una consulta simple para obtener todos los estudiantes
+    let students: Vec<Student> = students::table.load(&connection).expect("Error loading students");
+
+    // Imprimir los resultados
+    for student in students {
+        println!("ID: {}, Name: {}, Age: {}", student.id, student.name, student.age);
+    }
+}
+
+
+
+#[get("/")]
+fn index() -> &'static str {
+    "Hello, Docker!"
+}
+
+#[launch]
+fn rocket() -> _ {
+    rocket::build().mount("/", routes![index])
+}

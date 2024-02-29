@@ -1,0 +1,17 @@
+[
+    {
+        "nombre": "Lol",
+        "canciones": [
+            "\\descarga\\Himno Nacional.mp3",
+            "\\descarga\\GODS ft. NewJeans Worlds 2023.mp3"
+        ]
+    },
+    {
+        "nombre": "Otras",
+        "canciones": [
+            "\\descarga\\Himno Nacional.mp3",
+            "\\descarga\\GODS ft. NewJeans Worlds 2023.mp3",
+            "\\documento\\Himno Nacional22.mp3"
+        ]
+    }
+]
